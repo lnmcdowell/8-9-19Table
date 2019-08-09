@@ -59,12 +59,12 @@ class myCell: UITableViewCell {
         contentView.addSubview(ageLabel)
         contentView.addSubview(titleLabel)
         
-        nameLabel.DoConstraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: nil, trailing: nil, topPad: 5, leadingPad: 5, bottomPad: 5, trailingPad: 5, width: 100, height: 60)
+        nameLabel.DoConstraints(top: contentView.topAnchor, leading: contentView.leadingAnchor, bottom: contentView.bottomAnchor, trailing: nil, topPad: 5, leadingPad: 5, bottomPad: -5, trailingPad: -5, width: 100, height: 0)
         
-        titleLabel.DoConstraints(top: contentView.topAnchor, leading: nameLabel.trailingAnchor, bottom: nil, trailing: nil, topPad: 5, leadingPad: 5, bottomPad: 5, trailingPad: 5, width: 100, height: 30)
+        titleLabel.DoConstraints(top: contentView.topAnchor, leading: nameLabel.trailingAnchor, bottom: ageLabel.topAnchor, trailing: nil, topPad: 5, leadingPad: 5, bottomPad: -5, trailingPad: -5, width: 100, height: 0)
         
-        ageLabel.DoConstraints(top: titleLabel.bottomAnchor, leading: nameLabel.trailingAnchor, bottom: nil, trailing: nil, topPad: 5, leadingPad: 5, bottomPad: 5, trailingPad: 5, width: 100, height: 30)
-        
+        ageLabel.DoConstraints(top: titleLabel.bottomAnchor, leading: nameLabel.trailingAnchor, bottom: contentView.bottomAnchor, trailing: nil, topPad: 5, leadingPad: 5, bottomPad: -5, trailingPad: -5, width: 100, height: 0)
+        //adding bottom constraints to satisfy autosizing of cell height
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

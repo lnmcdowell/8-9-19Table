@@ -13,6 +13,10 @@ class TableViewController: UITableViewController {
     let CELL_ID = "CELL_ID"
     var data:[DataNode]? = [DataNode]()
     
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        print("rotated")
+//        tableView.invalidateIntrinsicContentSize()
+//    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +25,7 @@ class TableViewController: UITableViewController {
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
+
           navigationItem.title = "8-9-19 Table"
         tableView.backgroundColor = .green
         
@@ -30,9 +34,17 @@ class TableViewController: UITableViewController {
         tableView.isUserInteractionEnabled = true
         tableView.isEditing = true
         print("viewDidLoad Complete")
-    }
-
+        
+        tableView.rowHeight = UITableView.automaticDimension
     
+        //tableView.trailingAnchor.constraint(equalTo: UIScreen.main.bounds.width - 80, constant: 0)
+    }
+//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return UITableView.automaticDimension
+//    }
+//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+//        return 80 // or whatever number you choose
+//    }
     func setupData(){
         
         data?.append(DataNode(name:"Nate",age:42,title:"Developer"))
@@ -46,7 +58,7 @@ class TableViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        print("numberOfSections is 1")
+       // print("numberOfSections is 1")
         return 1
     }
 
@@ -54,10 +66,10 @@ class TableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         
         if let cnt = data {
-            print("numberOfRows - \(cnt.count) in section# \(section)")
+         //   print("numberOfRows - \(cnt.count) in section# \(section)")
             return cnt.count
         }
-        print("no rows")
+      //  print("no rows")
         return 0
     }
 
@@ -66,7 +78,7 @@ class TableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath) as! myCell
  
          cell.data = data![indexPath.row]
-        print("cellForRowAt \(indexPath.row)")
+       // print("cellForRowAt \(indexPath.row)")
         return cell
     }
   
@@ -95,22 +107,26 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
         let temp = data!.remove(at: fromIndexPath.item)
         data?.insert(temp, at: to.item)
-        print("row moved from \(fromIndexPath.row) to \(to.row)")
+      //  print("row moved from \(fromIndexPath.row) to \(to.row)")
     }
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("heightForRowAt path \(indexPath.row)")
-        return 80
-    }
-
+ 
   
     // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+//    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+//        // Return false if you do not want the item to be re-orderable.
+//        return true
+//    }
+/////////////////////////////these two get rid of the delete buttons in isediting = true case/////
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .none
     }
-
-
+    
+    override func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        return false
+    }
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    
+    
     /*
     // MARK: - Navigation
 
