@@ -36,7 +36,7 @@ class TableViewController: UITableViewController {
         print("viewDidLoad Complete")
         
         tableView.rowHeight = UITableView.automaticDimension
-    
+        //tableView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width - 80, height: UIScreen.main.bounds.height)
         //tableView.trailingAnchor.constraint(equalTo: UIScreen.main.bounds.width - 80, constant: 0)
     }
 //    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
