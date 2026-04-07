@@ -34,8 +34,9 @@ struct Ferrari: Car {
     var sunroof = Sunroof()
 
     mutating func run() {
-        position.x += Float(speed) * sin(heading)
-        position.y += Float(speed) * cos(heading)
+        let headingRad = heading * .pi / 180
+        position.x += Float(speed) * sin(headingRad)
+        position.y += Float(speed) * cos(headingRad)
         print("Ferrari running at speed \(speed), heading \(heading) rad, position (\(position.x), \(position.y))")
     }
 
