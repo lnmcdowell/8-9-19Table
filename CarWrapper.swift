@@ -31,6 +31,7 @@ struct Ferrari: Car {
     var sunroof = Sunroof()
 
     mutating func run() {
+        position.x += Float(speed)
         print("Ferrari running at speed \(speed), position (\(position.x), \(position.y))")
     }
 
@@ -43,6 +44,7 @@ struct Ferrari: Car {
 // MARK: - Example Usage
 
 var wrapper = CarWrapper(Ferrari())
-wrapper.run()                  // Ferrari running at speed 60, position (0.0, 0.0)
+wrapper.run()                  // Ferrari running at speed 60, position (60.0, 0.0)
+wrapper.run()                  // Ferrari running at speed 60, position (120.0, 0.0)
 wrapper.car.retract()          // Ferrari sunroof is now open
 wrapper.car.retract()          // Ferrari sunroof is now closed
