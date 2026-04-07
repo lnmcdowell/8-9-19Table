@@ -18,3 +18,31 @@ struct CarWrapper<T: Car> {
         car.run()
     }
 }
+
+// MARK: - Ferrari
+
+struct Sunroof {
+    var isOpen: Bool = false
+}
+
+struct Ferrari: Car {
+    var speed: Int = 60
+    var position: (x: Float, y: Float) = (0.0, 0.0)
+    var sunroof = Sunroof()
+
+    mutating func run() {
+        print("Ferrari running at speed \(speed), position (\(position.x), \(position.y))")
+    }
+
+    mutating func retract() {
+        sunroof.isOpen.toggle()
+        print("Ferrari sunroof is now \(sunroof.isOpen ? "open" : "closed")")
+    }
+}
+
+// MARK: - Example Usage
+
+var wrapper = CarWrapper(Ferrari())
+wrapper.run()                  // Ferrari running at speed 60, position (0.0, 0.0)
+wrapper.car.retract()          // Ferrari sunroof is now open
+wrapper.car.retract()          // Ferrari sunroof is now closed
